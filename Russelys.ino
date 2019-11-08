@@ -25,7 +25,7 @@ const int LED[] = {
 };
 
 // Antal moduser vi har. MÅ ØKES MED 1 HVER GANG MAN LEGGER TIL NY MODUS!!
-const int NUM_MODES = 9;
+const int NUM_MODES = 8;
 
 // Lagrer hvilken lysmodus vi er i
 int mode = 0;
@@ -68,42 +68,19 @@ void resetAll() {
 // Skrevet av: alle
 void mode0() {
   // En modus der alle LEDs er av
-  
   resetAll();
 }
 
 // Skrevet av: alle
 void mode1() {
   // En modus der alle LEDs er på
-  
-  digitalWrite(LED_1, HIGH);
-  digitalWrite(LED_2, HIGH);
-  digitalWrite(LED_3, HIGH);
-}
-
-// Skrevet av: alle
-void mode2() {
-  // Først og fremst en modus for å teste 'modulus-systemet' for å få LEDs til å blinke uten delay()
-  // Bruker 2 LEDs som blinker med forskjellig frekvens
-  resetAll();
-  
-  if(time % 200 < 100) {
-    digitalWrite(LED_1, HIGH);
-  }
-  else {
-    digitalWrite(LED_1, LOW);
-  }
-  
-  if(time % 400 < 100) {
-    digitalWrite(LED_2, HIGH);
-  }
-  else {
-    digitalWrite(LED_2, LOW);
+  for(int i = 0; i < NUM_LEDS; i++) {
+  	digitalWrite(LED[i], HIGH);
   }
 }
 
 // Skrevet av: Magnus
-void mode3() {
+void mode2() {
    // Bølgen etterfulgt av blinking
   
     if(time % 1000 < 500) {
@@ -154,7 +131,7 @@ void mode3() {
 }
 
 // Skrevet av: Magnus
-void mode4() {
+void mode3() {
   // En kompleks modus med 4 forskjellige sekvenser i løpet av 8 sekunder
   // Lagrer 'mod' for mer oversiktlig kode
   int mod = time % 8000;
@@ -311,7 +288,7 @@ void mode4() {
 }
 
 // Skrevet av: Isak
-void mode5() {
+void mode4() {
   // Bruker foreløpig bare 3 LEDs
 
   resetAll();
@@ -345,7 +322,7 @@ void mode5() {
 }
 
 // Skrevet av: Audun
-void mode6() {
+void mode5() {
   // Bølgen
   
     //1
@@ -463,38 +440,30 @@ void mode6() {
 long randomnumber = 1;
 bool randSwitch = true;
 
-// Skrevet av: Christopher 
-void mode7() {
+// Skrevet av: Christopher
+void mode6() {
   // Skrur på en tilfeldig lampe hvert 400. millisekund
   
   if(time % 400 < 200) {
     if(randSwitch == true) {
-      randomnumber = random(1, 4);
+      randomnumber = random(0, 6);
       randSwitch = false;
     }
   }
   else {
     randSwitch = true;
   }
-  if(randomnumber == 1) {
-  digitalWrite(LED_1, HIGH);
-  digitalWrite(LED_2, LOW);
-  digitalWrite(LED_3, LOW);
-  } else if(randomnumber == 2) {
-    digitalWrite(LED_2, HIGH);
-    digitalWrite(LED_1, LOW);
-    digitalWrite(LED_3, LOW);
-  } else {
-    digitalWrite(LED_3, HIGH);
-    digitalWrite(LED_2, LOW);
-    digitalWrite(LED_1, LOW);
-  }
+  
+  // Skru av alle
+  resetAll();
+  
+  digitalWrite(LED[randomnumber], HIGH);
 
 }
 
 // Skrevet av: Isak
-void mode8() {
-      //1
+void mode7() {
+	    //1
   if (time % 600 < 0) {
     digitalWrite (LED_6, HIGH);
     digitalWrite (LED_5, LOW);
@@ -646,8 +615,4 @@ void loop()
   else if(mode == 7) {
     mode7();
   }
-  else if(mode == 8) {
-    mode8();
-  }
 }
-
