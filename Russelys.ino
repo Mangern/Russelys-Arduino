@@ -75,7 +75,7 @@ void mode0() {
 void mode1() {
   // En modus der alle LEDs er på
   for(int i = 0; i < NUM_LEDS; i++) {
-  	digitalWrite(LED[i], HIGH);
+    digitalWrite(LED[i], HIGH);
   }
 }
 
@@ -88,43 +88,51 @@ void mode2() {
             digitalWrite(LED_1, HIGH);
             digitalWrite(LED_2, LOW);
             digitalWrite(LED_3, LOW);
+
+            digitalWrite(LED_4, HIGH);
+            digitalWrite(LED_5, LOW);
+            digitalWrite(LED_6, LOW);
         }
         else if(time % 500 < 333) {
             digitalWrite(LED_1, LOW);
             digitalWrite(LED_2, HIGH);
             digitalWrite(LED_3, LOW);
+
+            digitalWrite(LED_4, LOW);
+            digitalWrite(LED_5, HIGH);
+            digitalWrite(LED_6, LOW);
         }
         else {
             digitalWrite(LED_1, LOW);
             digitalWrite(LED_2, LOW);
             digitalWrite(LED_3, HIGH);
+
+            digitalWrite(LED_4, LOW);
+            digitalWrite(LED_5, LOW);
+            digitalWrite(LED_6, HIGH);
         }
     }
     else {
         if(time % 500 < 100) {
-            digitalWrite(LED_3, HIGH);
-            digitalWrite(LED_2, HIGH);
-            digitalWrite(LED_1, HIGH);
+            for(int i = 0; i < NUM_LEDS; i++) {
+              digitalWrite(LED[i], HIGH);
+            }
         }
         else if(time % 500 < 200) {
-            digitalWrite(LED_1, LOW);
-            digitalWrite(LED_2, LOW);
-            digitalWrite(LED_3, LOW);
+            resetAll();
         }
         else if(time % 500 < 300) {
-            digitalWrite(LED_3, HIGH);
-            digitalWrite(LED_2, HIGH);
-            digitalWrite(LED_1, HIGH);
+            for(int i = 0; i < NUM_LEDS; i++) {
+              digitalWrite(LED[i], HIGH);
+            }
         }
         else if(time % 500 < 400) {
-            digitalWrite(LED_1, LOW);
-            digitalWrite(LED_2, LOW);
-            digitalWrite(LED_3, LOW);
+            resetAll();
         }
         else {
-          digitalWrite(LED_3, HIGH);
-          digitalWrite(LED_2, HIGH);
-          digitalWrite(LED_1, HIGH);
+          for(int i = 0; i < NUM_LEDS; i++) {
+              digitalWrite(LED[i], HIGH);
+            }
         }
      
     }
@@ -289,36 +297,48 @@ void mode3() {
 
 // Skrevet av: Isak
 void mode4() {
-  // Bruker foreløpig bare 3 LEDs
-
   resetAll();
   
   if(time % 1000 < 400) {
-        digitalWrite(LED_1, HIGH);
-        digitalWrite(LED_2, LOW);
-        digitalWrite(LED_3, HIGH);
-    }
-    else if(time % 1000 < 750) {
         digitalWrite(LED_1, LOW);
         digitalWrite(LED_2, HIGH);
         digitalWrite(LED_3, LOW);
+        digitalWrite(LED_4, HIGH);
+        digitalWrite(LED_5, LOW);
+        digitalWrite(LED_6, HIGH);
+    }
+    else if(time % 1000 < 750) {
+        digitalWrite(LED_1, HIGH);
+        digitalWrite(LED_2, LOW);
+        digitalWrite(LED_3, HIGH);
+        digitalWrite(LED_4, LOW);
+        digitalWrite(LED_5, HIGH);
+        digitalWrite(LED_6, LOW);
     }
     else if(time % 1000 < 800) {
         digitalWrite(LED_1, LOW);
         digitalWrite(LED_2, LOW);
-        digitalWrite(LED_3, HIGH);
+        digitalWrite(LED_3, LOW);
+        digitalWrite(LED_4, LOW);
+        digitalWrite(LED_5, HIGH);
+        digitalWrite(LED_6, HIGH);
     }
     else if(time % 1000 < 850) {
         digitalWrite(LED_1, HIGH);
-        digitalWrite(LED_2, LOW);
+        digitalWrite(LED_2, HIGH);
         digitalWrite(LED_3, LOW);
+        digitalWrite(LED_4, LOW);
+        digitalWrite(LED_5, LOW);
+        digitalWrite(LED_6, LOW);
     }
     else if(time % 1000 < 900) {
         digitalWrite(LED_1, LOW);
-        digitalWrite(LED_2, HIGH);
-        digitalWrite(LED_3, LOW);
+        digitalWrite(LED_2, LOW);
+        digitalWrite(LED_3, HIGH);
+        digitalWrite(LED_4, HIGH);
+        digitalWrite(LED_5, LOW);
+        digitalWrite(LED_6, LOW);
     }
-
 }
 
 // Skrevet av: Audun
@@ -463,7 +483,7 @@ void mode6() {
 
 // Skrevet av: Isak
 void mode7() {
-	    //1
+      //1
   if (time % 600 < 0) {
     digitalWrite (LED_6, HIGH);
     digitalWrite (LED_5, LOW);
